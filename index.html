@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>聊天室</title>
+    <title>聊天室 - 注册</title>
     <style>
         * {
             margin: 0;
@@ -14,529 +14,259 @@
         
         body {
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
             padding: 20px;
         }
         
-        .chat-container {
+        .container {
             width: 100%;
-            max-width: 900px;
-            height: 90vh;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            display: flex;
-            overflow: hidden;
+            max-width: 450px;
         }
         
-        /* 侧边栏样式 */
-        .sidebar {
-            width: 30%;
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .user-profile {
-            display: flex;
-            align-items: center;
+        .header {
+            text-align: center;
             margin-bottom: 30px;
         }
         
-        .avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #3498db;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 20px;
-            margin-right: 15px;
+        .header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         
-        .user-info h3 {
-            margin-bottom: 5px;
+        .header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
         }
         
-        .user-status {
-            font-size: 12px;
-            color: #7f8c8d;
-            display: flex;
-            align-items: center;
+        .registration-form {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
-        .status-indicator {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #2ecc71;
-            margin-right: 5px;
-        }
-        
-        .contacts-header {
-            margin: 20px 0 15px 0;
-            font-size: 14px;
-            color: #95a5a6;
-        }
-        
-        .contact-list {
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-        
-        .contact {
-            display: flex;
-            align-items: center;
-            padding: 12px 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        
-        .contact:hover {
-            background-color: #34495e;
-        }
-        
-        .contact.active {
-            background-color: #3498db;
-        }
-        
-        .contact-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #e74c3c;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .contact-info {
-            flex-grow: 1;
-        }
-        
-        .contact-name {
-            font-weight: 500;
-            margin-bottom: 3px;
-        }
-        
-        .last-message {
-            font-size: 12px;
-            color: #bdc3c7;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 150px;
-        }
-        
-        /* 聊天区域样式 */
-        .chat-area {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .chat-header {
-            padding: 20px;
-            border-bottom: 1px solid #ecf0f1;
-            display: flex;
-            align-items: center;
-        }
-        
-        .chat-header-info {
-            flex-grow: 1;
-        }
-        
-        .chat-header h3 {
-            margin-bottom: 5px;
-        }
-        
-        .chat-header p {
-            font-size: 14px;
-            color: #7f8c8d;
-        }
-        
-        .chat-actions {
-            display: flex;
-        }
-        
-        .chat-action-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #f5f7fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: 10px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        
-        .chat-action-btn:hover {
-            background-color: #e4e7ec;
-        }
-        
-        .messages-container {
-            flex-grow: 1;
-            padding: 20px;
-            overflow-y: auto;
-            background-color: #f8f9fa;
-        }
-        
-        .message {
-            max-width: 70%;
-            margin-bottom: 20px;
-            display: flex;
-        }
-        
-        .message.received {
-            align-self: flex-start;
-        }
-        
-        .message.sent {
-            align-self: flex-end;
-            margin-left: auto;
-            flex-direction: row-reverse;
-        }
-        
-        .message-avatar {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
-            margin: 0 10px;
-            flex-shrink: 0;
-        }
-        
-        .message-content {
-            padding: 12px 15px;
-            border-radius: 18px;
+        .form-group {
+            margin-bottom: 25px;
             position: relative;
         }
         
-        .received .message-content {
-            background-color: white;
-            border-top-left-radius: 5px;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
         }
         
-        .sent .message-content {
-            background-color: #3498db;
-            color: white;
-            border-top-right-radius: 5px;
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5ee;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
         }
         
-        .message-time {
-            font-size: 11px;
-            color: #95a5a6;
-            margin-top: 5px;
-            text-align: right;
-        }
-        
-        .sent .message-time {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .message-input-container {
-            padding: 20px;
-            display: flex;
-            border-top: 1px solid #ecf0f1;
-        }
-        
-        .message-input {
-            flex-grow: 1;
-            padding: 12px 15px;
-            border: 1px solid #dcdfe6;
-            border-radius: 25px;
+        .form-control:focus {
+            border-color: #6a11cb;
             outline: none;
-            font-size: 14px;
-            transition: border-color 0.2s;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
         }
         
-        .message-input:focus {
-            border-color: #3498db;
+        .password-requirements {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 5px;
         }
         
-        .send-button {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #3498db;
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
             color: white;
             border: none;
-            margin-left: 10px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s;
+            transition: all 0.3s;
         }
         
-        .send-button:hover {
-            background-color: #2980b9;
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
         }
         
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 80px;
-            }
-            
-            .user-info, .contact-info, .contacts-header {
-                display: none;
-            }
-            
-            .contact {
-                justify-content: center;
-            }
-            
-            .contact-avatar {
-                margin-right: 0;
-            }
+        .login-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
         }
         
-        @media (max-width: 576px) {
-            .sidebar {
-                display: none;
+        .login-link a {
+            color: #6a11cb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .success-message {
+            color: #2ecc71;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        @media (max-width: 480px) {
+            .registration-form {
+                padding: 30px 20px;
             }
             
-            .chat-container {
-                height: 100vh;
-                border-radius: 0;
+            .header h1 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="chat-container">
-        <!-- 侧边栏 -->
-        <div class="sidebar">
-            <div class="user-profile">
-                <div class="avatar">我</div>
-                <div class="user-info">
-                    <h3>张三</h3>
-                    <div class="user-status">
-                        <div class="status-indicator"></div>
-                        <span>在线</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="contacts-header">联系人</div>
-            <div class="contact-list">
-                <div class="contact active">
-                    <div class="contact-avatar">李</div>
-                    <div class="contact-info">
-                        <div class="contact-name">李四</div>
-                        <div class="last-message">你好，最近怎么样？</div>
-                    </div>
-                </div>
-                <div class="contact">
-                    <div class="contact-avatar">王</div>
-                    <div class="contact-info">
-                        <div class="contact-name">王五</div>
-                        <div class="last-message">明天开会别忘了</div>
-                    </div>
-                </div>
-                <div class="contact">
-                    <div class="contact-avatar">赵</div>
-                    <div class="contact-info">
-                        <div class="contact-name">赵六</div>
-                        <div class="last-message">项目进度如何？</div>
-                    </div>
-                </div>
-                <div class="contact">
-                    <div class="contact-avatar">孙</div>
-                    <div class="contact-info">
-                        <div class="contact-name">孙七</div>
-                        <div class="last-message">周末一起吃饭吗？</div>
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+        <div class="header">
+            <h1>聊天室</h1>
+            <p>加入我们的社区，与朋友畅聊</p>
         </div>
         
-        <!-- 聊天区域 -->
-        <div class="chat-area">
-            <div class="chat-header">
-                <div class="chat-header-info">
-                    <h3>李四</h3>
-                    <p>在线 - 最后活跃: 刚刚</p>
+        <div class="registration-form">
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" class="form-control" placeholder="请输入用户名" required>
+                    <div class="error-message" id="usernameError">用户名必须为3-20个字符，只能包含字母、数字和下划线</div>
+                    <div class="success-message" id="usernameSuccess">用户名可用</div>
                 </div>
-                <div class="chat-actions">
-                    <div class="chat-action-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11 18C14.866 18 18 14.866 18 11C18 7.13401 14.866 4 11 4C7.13401 4 4 7.13401 4 11C4 14.866 7.13401 18 11 18Z" stroke="#7f8c8d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M21 21L16.65 16.65" stroke="#7f8c8d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <div class="chat-action-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 5V19" stroke="#7f8c8d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M5 12H19" stroke="#7f8c8d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
+                
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" class="form-control" placeholder="请输入密码" required>
+                    <div class="password-requirements">密码必须包含至少8个字符，包括字母和数字</div>
+                    <div class="error-message" id="passwordError">密码不符合要求</div>
                 </div>
-            </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">确认密码</label>
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="请再次输入密码" required>
+                    <div class="error-message" id="confirmPasswordError">两次输入的密码不一致</div>
+                </div>
+                
+                <button type="submit" class="btn">注册</button>
+            </form>
             
-            <div class="messages-container">
-                <div class="message received">
-                    <div class="message-avatar" style="background-color: #e74c3c;">李</div>
-                    <div class="message-content">
-                        <div class="message-text">你好！最近怎么样？</div>
-                        <div class="message-time">10:30</div>
-                    </div>
-                </div>
-                
-                <div class="message sent">
-                    <div class="message-avatar" style="background-color: #3498db;">我</div>
-                    <div class="message-content">
-                        <div class="message-text">还不错，最近工作有点忙。你呢？</div>
-                        <div class="message-time">10:32</div>
-                    </div>
-                </div>
-                
-                <div class="message received">
-                    <div class="message-avatar" style="background-color: #e74c3c;">李</div>
-                    <div class="message-content">
-                        <div class="message-text">我也挺好的。周末有空吗？想约你一起吃饭。</div>
-                        <div class="message-time">10:33</div>
-                    </div>
-                </div>
-                
-                <div class="message sent">
-                    <div class="message-avatar" style="background-color: #3498db;">我</div>
-                    <div class="message-content">
-                        <div class="message-text">好啊，周六晚上怎么样？</div>
-                        <div class="message-time">10:35</div>
-                    </div>
-                </div>
-                
-                <div class="message received">
-                    <div class="message-avatar" style="background-color: #e74c3c;">李</div>
-                    <div class="message-content">
-                        <div class="message-text">周六晚上可以，我知道一家新开的餐厅很不错。</div>
-                        <div class="message-time">10:36</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="message-input-container">
-                <input type="text" class="message-input" placeholder="输入消息...">
-                <button class="send-button">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
+            <div class="login-link">
+                已有账户？<a href="#">立即登录</a>
             </div>
         </div>
     </div>
 
     <script>
-        // 简单的聊天功能实现
-        document.addEventListener('DOMContentLoaded', function() {
-            const messageInput = document.querySelector('.message-input');
-            const sendButton = document.querySelector('.send-button');
-            const messagesContainer = document.querySelector('.messages-container');
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // 发送消息函数
-            function sendMessage() {
-                const messageText = messageInput.value.trim();
-                if (messageText === '') return;
-                
-                // 创建新消息元素
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('message', 'sent');
-                
-                const now = new Date();
-                const timeString = ${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')};
-                
-                messageElement.innerHTML = `
-                    <div class="message-avatar" style="background-color: #3498db;">我</div>
-                    <div class="message-content">
-                        <div class="message-text">${messageText}</div>
-                        <div class="message-time">${timeString}</div>
-                    </div>
-                `;
-                
-                // 添加到消息容器
-                messagesContainer.appendChild(messageElement);
-                
-                // 清空输入框
-                messageInput.value = '';
-                
-                // 滚动到底部
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                
-                // 模拟回复（仅演示用）
-                setTimeout(simulateReply, 1000 + Math.random() * 2000);
+            // 获取表单值
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            // 重置错误消息
+            document.getElementById('usernameError').style.display = 'none';
+            document.getElementById('usernameSuccess').style.display = 'none';
+            document.getElementById('passwordError').style.display = 'none';
+            document.getElementById('confirmPasswordError').style.display = 'none';
+            
+            let isValid = true;
+            
+            // 验证用户名
+            const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+            if (!usernameRegex.test(username)) {
+                document.getElementById('usernameError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('usernameSuccess').style.display = 'block';
             }
             
-            // 模拟回复消息
-            function simulateReply() {
-                const replies = [
-                    "听起来不错！",
-                    "我同意你的看法。",
-                    "那我们到时候见！",
-                    "好的，就这么定了。",
-                    "谢谢你的建议。"
-                ];
-                
-                const randomReply = replies[Math.floor(Math.random() * replies.length)];
-                
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('message', 'received');
-                
-                const now = new Date();
-                const timeString = ${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')};
-                
-                messageElement.innerHTML = `
-                    <div class="message-avatar" style="background-color: #e74c3c;">李</div>
-                    <div class="message-content">
-                        <div class="message-text">${randomReply}</div>
-                        <div class="message-time">${timeString}</div>
-                    </div>
-                `;
-                
-                messagesContainer.appendChild(messageElement);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            // 验证密码
+            const passwordRegex = /^(?=.[A-Za-z])(?=.\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+            if (!passwordRegex.test(password)) {
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
             }
             
-            // 发送按钮点击事件
-            sendButton.addEventListener('click', sendMessage);
+            // 验证确认密码
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').style.display = 'block';
+                isValid = false;
+            }
             
-            // 输入框回车事件
-            messageInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    sendMessage();
+            // 如果验证通过，模拟注册成功
+            if (isValid) {
+                alert('注册成功！欢迎加入聊天室！');
+                // 在实际应用中，这里会发送数据到服务器
+                // 然后重定向到登录页面或聊天页面
+            }
+        });
+        
+        // 实时验证用户名
+        document.getElementById('username').addEventListener('input', function() {
+            const username = this.value;
+            const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+            
+            document.getElementById('usernameError').style.display = 'none';
+            document.getElementById('usernameSuccess').style.display = 'none';
+            
+            if (username.length > 0) {
+                if (!usernameRegex.test(username)) {
+                    document.getElementById('usernameError').style.display = 'block';
+                } else {
+                    document.getElementById('usernameSuccess').style.display = 'block';
                 }
-            });
+            }
+        });
+        
+        // 实时验证密码
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const passwordRegex = /^(?=.[A-Za-z])(?=.\d)[A-Za-z\d@$!%*#?&]{8,}$/;
             
-            // 联系人点击事件
-            const contacts = document.querySelectorAll('.contact');
-            contacts.forEach(contact => {
-                contact.addEventListener('click', function() {
-                    contacts.forEach(c => c.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // 在实际应用中，这里会加载对应联系人的聊天记录
-                    const contactName = this.querySelector('.contact-name').textContent;
-                    document.querySelector('.chat-header h3').textContent = contactName;
-                });
-            });
+            document.getElementById('passwordError').style.display = 'none';
+            
+            if (password.length > 0 && !passwordRegex.test(password)) {
+                document.getElementById('passwordError').style.display = 'block';
+            }
+        });
+        
+        // 实时验证确认密码
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = this.value;
+            
+            document.getElementById('confirmPasswordError').style.display = 'none';
+            
+            if (confirmPassword.length > 0 && password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').style.display = 'block';
+            }
         });
     </script>
 </body>
